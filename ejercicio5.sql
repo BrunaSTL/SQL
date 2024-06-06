@@ -1,65 +1,60 @@
--- 1. Crear la tabla Clientes
+-- 1. Crea una tabla llamada "Clientes" con las columnas id (entero) y nombre (cadena de texto)
 CREATE TABLE Clientes (
     id INTEGER PRIMARY KEY,
     nombre TEXT
 );
 
--- 2. Insertar un cliente
+-- 2. Inserta un cliente con id=1 y nombre='John' en la tabla "Clientes".
 INSERT INTO Clientes (id, nombre) VALUES (1, 'John');
 
--- 3. Actualizar el nombre del cliente
+-- 3. Actualiza el nombre del cliente con id=1 a 'John Doe' en la tabla "Clientes".
 UPDATE Clientes SET nombre = 'John Doe' WHERE id = 1;
 
--- 4. Eliminar el cliente
+-- 4. Elimina el cliente con id=1 de la tabla "Clientes"
 DELETE FROM Clientes WHERE id = 1;
 
--- 5. Leer todos los clientes
+-- 5.  Lee todos los clientes de la tabla "Clientes"
 SELECT * FROM Clientes;
 
--- 6. Crear la tabla Pedidos
+-- 6. Crea una tabla llamada "Pedidos" con las columnas id (entero) y cliente_id (entero)
 CREATE TABLE Pedidos (
     id INTEGER PRIMARY KEY,
     cliente_id INTEGER,
     FOREIGN KEY (cliente_id) REFERENCES Clientes(id)
 );
 
--- 7. Insertar un pedido
+-- 7. Insertar un pedido con id=1 y cliente_id=1 en la tabla "Pedidos"
 INSERT INTO Pedidos (id, cliente_id) VALUES (1, 1);
 
--- 8. Actualizar el cliente_id del pedido
+-- 8. Actualiza el cliente_id del pedido con id=1 a 2 en la tabla "Pedidos"
 UPDATE Pedidos SET cliente_id = 2 WHERE id = 1;
 
--- 9. Eliminar el pedido
+-- 9. Elimina el pedido con id=1 de la tabla "Pedidos".
 DELETE FROM Pedidos WHERE id = 1;
 
--- 10. Leer todos los pedidos
+-- 10.Lee todos los pedidos de la tabla "Pedidos"
 SELECT * FROM Pedidos;
 
--- 11. Crear la tabla Productos
+-- 11. Crea una tabla llamada "Productos" con las columnas id (entero) y nombre (cadena de texto)
 CREATE TABLE Productos (
     id INTEGER PRIMARY KEY,
-    nombre TEXT,
-    precio NUMERIC
+    nombre TEXT
 );
 
--- 12. Insertar productos
-INSERT INTO Productos (id, nombre, precio) VALUES
-(1, 'Laptop', 1000.00),
-(2, 'Mouse', 25.50),
-(3, 'Teclado', 45.00),
-(4, 'Monitor',300.00),
-(5, 'Impresora', 150.00);
+-- 12. Inserta un producto con id=1 y nombre='Camisa' en la tabla "Productos".
+INSERT INTO Productos (id, nombre) VALUES
+(1, 'Camisa');
 
--- 13. Actualizar el precio de un producto
-UPDATE Productos SET precio = 950.00 WHERE id = 1;
+-- 13. Actualiza el nombre del producto con id=1 a 'Pantalón' en la tabla "Productos".
+UPDATE Productos SET nombre = Pantalón WHERE id = 1;
 
--- 14. Eliminar un producto
-DELETE FROM Productos WHERE id = 5;
+-- 14.  Elimina el producto con id=1 de la tabla "Productos".
+DELETE FROM Productos WHERE id = 1;
 
 -- 15. Leer todos los productos
 SELECT * FROM Productos;
 
--- 16. Crear la tabla DetallesPedido
+-- 16. Crear la tabla DetallesPedido " con las columnas pedido_id (entero) y producto_id (entero)
 CREATE TABLE DetallesPedido (
     pedido_id INTEGER,
     producto_id INTEGER,
@@ -67,39 +62,39 @@ CREATE TABLE DetallesPedido (
     FOREIGN KEY (producto_id) REFERENCES Productos(id)
 );
 
--- 17. Insertar un detalle de pedido
+-- 17. Inserta un detalle de pedido con pedido_id=1 y producto_id=1 en la tabla "DetallesPedido".
 INSERT INTO DetallesPedido (pedido_id, producto_id) VALUES (1, 1);
 
--- 18. Actualizar el producto_id del detalle de pedido
+-- 18. Actualizar el producto_id del detalle de pedido pedido_id=1 y producto_id=1 en la tabla "DetallesPedido"
 UPDATE DetallesPedido SET producto_id = 2 WHERE pedido_id = 1;
 
--- 19. Eliminar el detalle de pedido
+-- 19. Elimina el detalle de pedido con pedido_id=1 de la tabla "DetallesPedido"
 DELETE FROM DetallesPedido WHERE pedido_id = 1;
 
--- 20. Leer todos los detalles de pedido
+-- 20. Lee todos los detalles de pedido de la tabla "DetallesPedido"
 SELECT * FROM DetallesPedido;
 
--- 21. Consulta para obtener todos los clientes y sus pedidos correspondientes utilizando un INNER JOIN
+-- 21. CRealiza una consulta para obtener todos los clientes y sus pedidos correspondientes utilizando un inner join
 SELECT Clientes.nombre, Pedidos.id
 FROM Clientes
 INNER JOIN Pedidos ON Clientes.id = Pedidos.cliente_id;
 
--- 22. Consulta para obtener todos los clientes y sus pedidos correspondientes utilizando un LEFT JOIN
+-- 22.  Realiza una consulta para obtener todos los clientes y sus pedidos correspondientes utilizando un left join
 SELECT Clientes.nombre, Pedidos.id
 FROM Clientes
 LEFT JOIN Pedidos ON Clientes.id = Pedidos.cliente_id;
 
--- 23. Consulta para obtener todos los productos y los detalles de pedido correspondientes utilizando un INNER JOIN
+-- 23. Realiza una consulta para obtener todos los productos y los detalles de pedido correspondientes utilizando un inner join.
 SELECT Productos.nombre, DetallesPedido.pedido_id
 FROM Productos
 INNER JOIN DetallesPedido ON Productos.id = DetallesPedido.producto_id;
 
--- 24. Consulta para obtener todos los productos y los detalles de pedido correspondientes utilizando un LEFT JOIN
+-- 24. Realiza una consulta para obtener todos los productos y los detalles de pedido correspondientes utilizando un left join
 SELECT Productos.nombre, DetallesPedido.pedido_id
 FROM Productos
 LEFT JOIN DetallesPedido ON Productos.id = DetallesPedido.producto_id;
 
--- 25. Crear una nueva columna llamada "telefono" en la tabla Clientes
+-- 25. Crea una nueva columna llamada "telefono" de tipo cadena de texto en la tabla "Clientes"
 ALTER TABLE Clientes ADD COLUMN telefono TEXT;
 
 -- 26. Modificar la columna "telefono" en la tabla Clientes para cambiar su tipo de datos a entero
